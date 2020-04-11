@@ -1,0 +1,16 @@
+<div class="level">
+ <div class="level-left">
+ <h1 class="title-is-2"><%= @area.area %></h1>
+ </div>
+ <div class="level-right">
+ <% if has_role?(:admin) %>
+  <%= link_to 'Editar Area', edit_area_path(@area), class:"button" %>
+ <% end %>
+ </div>
+</div>
+<hr />
+
+<div class="columns">
+ <%= render 'shared/topicos' %>
+ <%= render 'topicos/sidebar' %>
+</div>

@@ -1,0 +1,36 @@
+﻿    <div class="column is =8">
+        <h3 class= "title is-5 has-text-grey-light">Ultimos Tópicos </h3>
+        <div class= "topicos">
+            <% @topicos.each do |topico| %>
+                <div class= "columns bb-not-last pv10">
+                    <div class="column is-1">
+                        <%= gravatar_image_tag(topico.user.email, class:'border-radios-50', size:48, alt:topico.user.username) %>
+                    </div>
+                <div class="column is-8">
+                        <%=link_to topico do %>
+                            <h3 class="title is-5"><%= topico.title %></h3>
+                <%end%>
+                <div class="content">
+                    <%=truncate(strip_markdown(topico.content), length: 140)%>
+                    <p><em><small>Postado <%= time_ago_in_words(topico.created_at)%> atrás em 
+		<% if topico.area %>
+                    <%=link_to topico.area.area, topico.area %>
+                <%end%>
+                    por <%=topico.user.username%>
+                    </small>
+		</em>
+		</p>
+                </div>
+                </div>
+  
+		<%if topico_author(topico) || has_role?(:admin) %>
+                <div class="column has-text-right">
+                         <%= link_to 'Editar', edit_topico_path(topico), class:'button' %>
+                        <%= link_to 'Deletar', topico, method: :delete, data: { confirm: 'Você tem certeza?'}, class: "button"%>
+                </div>
+		<% end %>
+
+            </div>
+        <%end%>
+        </div>
+    </div>

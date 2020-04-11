@@ -1,0 +1,12 @@
+﻿<h1 class="title is-2 has-text-gray">Editando Comentário</h1>
+
+<%= simple_form_for([@topico, @comentario]) do |f|%>
+
+<div class="field">
+  <div class="control">
+   <%= f.input :comentario, input_html: { class: 'textarea' }, wrapper: false, label_html: {class: 'label' } %>
+</div>
+</div>
+
+<%= f.button :submit, 'Atualizar comentário', class:'button is-info' %>
+<% end %>
